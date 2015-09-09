@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  #skip_before_action :authenticate, only: :index
+  skip_before_action :authenticate, #only: :index
 
   def index
     render json: Profile.all
@@ -33,6 +33,12 @@ class ProfilesController < ApplicationController
     profile = Profile.find(params[:id])
     profile.destroy!
     head :ok
+  end
+
+  def photos
+    profile = Profile.find(params[:id])
+    photos = profile.photos
+    render json: photos
   end
 
   private
