@@ -1,6 +1,5 @@
 class Photographer < ActiveRecord::Base
   has_one :profile, autosave: true
-  has_many :photos, through: :profiles
 
   has_secure_password
 

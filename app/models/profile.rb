@@ -1,4 +1,4 @@
 class Profile < ActiveRecord::Base
   belongs_to :photographer
-  belongs_to :photo
+  has_many :photos
 end
