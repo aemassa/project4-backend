@@ -21,7 +21,7 @@ class ProfilesController < ApplicationController
 
   def update
     profile = Profile.find(params[:id])
-    if profule.update(profile_params)
+    if profile.update(profile_params)
       profile.save
       render json: profile
     else
@@ -40,6 +40,15 @@ class ProfilesController < ApplicationController
     photos = profile.photos
     render json: photos
   end
+
+  def find_by_zip
+    profiles = Profile.where(zip: params[:zip])
+    render json: profiles
+  end
+
+  # def self.search(query)
+  #   where("zip like ?", )
+  # end
 
   private
   def profile_params
