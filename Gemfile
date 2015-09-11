@@ -21,6 +21,8 @@ gem 'byebug', :group => :development
 
 gem 'httparty'
 
+ gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
+
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

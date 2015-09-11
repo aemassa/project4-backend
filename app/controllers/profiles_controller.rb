@@ -64,6 +64,6 @@ end
 
   private
   def profile_params
-    params.require(:profile).permit(:name, :email, :website, :phone, :city, :state, :zip, :photographer_id)
+    params.require(:profile).permit(:name, :email, :website, :phone, :city, :state, :zip, :image)
   end
 end
