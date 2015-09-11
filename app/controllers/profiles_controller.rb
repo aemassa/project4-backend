@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  skip_before_action :authenticate, #only: :index
+  skip_before_action :authenticate, only: [:index, :show]
 
 # https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>
 
@@ -27,7 +27,8 @@ end
   end
 
   def create
-    profile = current_photographer.profiles.create(profile_params)
+    # profile = current_photographer.profiles.create(profile_params)
+    profile = current_photographer.build_profile(profile_params)
     if profile.save
       render json: profile
     else
