@@ -1,8 +1,24 @@
 class ProfilesController < ApplicationController
   skip_before_action :authenticate, #only: :index
 
+# https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>
+
+# https://www.zipcodeapi.com/rest/OTxhLB8S5nuF1UwnlmXnuFIUJUckGQjvKRNvsVoyjSdkNKI96FxBlgw4aIpRyImj/radius.json/01089/10/mile
+
+# create arguments for zip and miles?
+def zips
+  response = HTTParty.get("https://www.zipcodeapi.com/rest/#{ENV['API_KEY']}/radius.json/#{params[:zip]}/20/mile")
+  byebug
+  response['zip_codes'].map {|e| e['zip_code']}
+end
+
   def index
-    render json: Profile.all
+    if params[:zip]
+      @profiles = Profile.where(zip: zips)
+    else
+      @profiles = Profile.all
+    end
+    render json: @profiles
     #render json: current_photographer.profile
   end
 
@@ -39,11 +55,6 @@ class ProfilesController < ApplicationController
     profile = Profile.find(params[:id])
     photos = profile.photos
     render json: photos
-  end
-
-  def find_by_zip
-    profiles = Profile.where(zip: params[:zip])
-    render json: profiles
   end
 
   # def self.search(query)

@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.3'
 
 gem 'rails-api'
+
+gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'spring', :group => :development
 
@@ -17,6 +18,9 @@ gem 'active_model_serializers'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'byebug', :group => :development
+
+gem 'httparty'
+
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
