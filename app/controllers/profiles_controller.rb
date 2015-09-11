@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
 # create arguments for zip and miles?
 def zips
   response = HTTParty.get("https://www.zipcodeapi.com/rest/#{ENV['API_KEY']}/radius.json/#{params[:zip]}/20/mile")
-  byebug
+  # byebug
   response['zip_codes'].map {|e| e['zip_code']}
 end
 
