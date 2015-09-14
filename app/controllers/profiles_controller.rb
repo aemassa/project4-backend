@@ -1,10 +1,6 @@
 class ProfilesController < ApplicationController
   skip_before_action :authenticate, only: [:index, :show]
 
-# https://www.zipcodeapi.com/rest/<api_key>/radius.<format>/<zip_code>/<distance>/<units>
-
-# https://www.zipcodeapi.com/rest/OTxhLB8S5nuF1UwnlmXnuFIUJUckGQjvKRNvsVoyjSdkNKI96FxBlgw4aIpRyImj/radius.json/01089/10/mile
-
 # create arguments for zip and miles?
 def zips
   response = HTTParty.get("https://www.zipcodeapi.com/rest/#{ENV['API_KEY']}/radius.json/#{params[:zip]}/20/mile")
