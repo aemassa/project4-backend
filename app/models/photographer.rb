@@ -13,7 +13,7 @@ class Photographer < ActiveRecord::Base
   end
 
   def login (password)
-    authenticate(password) && set_token && save! && token
+    authenticate(password) && set_token && save! && self # self is now the photographer logging in
   end
 
   private

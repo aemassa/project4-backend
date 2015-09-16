@@ -2,11 +2,11 @@ class ProfilesController < ApplicationController
   skip_before_action :authenticate, only: [:index, :show]
 
 # create arguments for zip and miles?
-def zips
-  response = HTTParty.get("https://www.zipcodeapi.com/rest/#{ENV['API_KEY']}/radius.json/#{params[:zip]}/20/mile")
-  # byebug
-  response['zip_codes'].map {|e| e['zip_code']}
-end
+  def zips
+    response = HTTParty.get("https://www.zipcodeapi.com/rest/#{ENV['API_KEY']}/radius.json/#{params[:zip]}/20/mile")
+    # byebug
+    response['zip_codes'].map {|e| e['zip_code']}
+  end
 
   def index
     if params[:zip]
@@ -20,6 +20,7 @@ end
 
   def show
     render json: Profile.find(params[:id])
+
   end
 
   def create

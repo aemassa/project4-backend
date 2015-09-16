@@ -6,9 +6,9 @@ class PhotographersController < ApplicationController
   # POST/login
   def login
     credentials = photographer_credentials
-    token = Photographer.login(credentials[:email], credentials[:password])
-    if token
-      render json: { token: token }
+    photographer = Photographer.login(credentials[:email], credentials[:password])
+    if photographer
+      render json: photographer, serializer: LoginPhotographerSerializer
     else
       head :unauthorized
     end
