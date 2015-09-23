@@ -2,15 +2,17 @@ class PhotosController < ApplicationController
   skip_before_action :authenticate#, only: :index
 
   def index
-    render json: Photo.all
+    render json: Photo.where(profile_id: params[:profile_id])
   end
 
   def show
-    render json: Photo.find(params[:id])
+    render json: Photo.where(profile_id: params[:profile_id]).find(params[:id])
   end
 
   def create
-    photo = Photo.create(photo_params)
+    profile = Profile.find(params[:profile_id])
+    photo = profile.photos.build(photo_params)
+
     if photo.save
       render json: photo
     else
@@ -36,6 +38,6 @@ class PhotosController < ApplicationController
 
   private
   def photo_params
-    params.require(:photo).permit(:caption, :profile_id)
+    params.require(:photo).permit(:caption, :gallery_image)
   end
 end
