@@ -1,5 +1,5 @@
 class ProfileSerializer < ActiveModel::Serializer
-  attributes :name, :email, :website, :phone, :city, :state, :zip, :image_url_thumb, :image_url_med, :image_url_orig, :id
+  attributes :name, :email, :website, :phone, :city, :state, :zip, :image_url_thumb, :image_url_med, :image_url_orig, :id, :photographer
 
   def image_url_thumb
     "http://localhost:3000" + object.image.url(:thumb)
@@ -11,6 +11,10 @@ class ProfileSerializer < ActiveModel::Serializer
 
   def image_url_orig
     "http://localhost:3000" + object.image.url(:original)
+  end
+
+  def photographer
+    object.photographer
   end
 
 end
