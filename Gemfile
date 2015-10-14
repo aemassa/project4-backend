@@ -27,6 +27,10 @@ gem 'aws-sdk', '~> 2'
 
 gem 'dotenv-rails'
 
+group :production do
+     gem 'rails_12factor'
+     gem 'puma'
+end
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
